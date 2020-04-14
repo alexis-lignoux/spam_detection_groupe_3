@@ -30,7 +30,7 @@ directory = "D:/Master 2/SEMESTRE 2/Dossiers/Python/"
 """
 
 fichier = list()
-with open(directory+'smsspamcollection.txt', 'r') as f :
+with open(directory + 'smsspamcollection.txt', 'r') as f :
    for line in f:
       fichier.append(line)
 	
@@ -654,11 +654,11 @@ print("Accuracy: %.2f%%" % (scores[1]*100))
 """
 
 # Sauvegarde du modèle
-model.save(directory+'spam_detection_model.h5')
+model.save(directory + 'spam_detection_model.h5')
 
 # Sauvegarder le dictionnaire
 import json
-with open(directory+'words_dict.json', 'w') as f:
+with open(directory + 'words_dict.json', 'w') as f:
     json.dump(words_dict, f)
 	
 
@@ -795,7 +795,7 @@ max_length = 190
 # Préprocessing des données
 import numpy
 from keras.preprocessing import sequence
-test_data = preprocessing(fileType = "txt", inputType = "YX", file = file, dictionnaire = dictionnaire)
+test_data = preprocessing(fileType = "txt", inputType = "YX", file = file, dictionnaire = dictionnaire, max_length=max_length)
 
 # Prédictions
 preds = modele.predict(test_data[0])
@@ -834,7 +834,7 @@ max_length = 190
 # Préprocession des données
 import numpy
 from keras.preprocessing import sequence
-new_base = preprocessing(fileType = "list", inputType = "X", file = new_sms, dictionnaire = dictionnaire)
+new_base = preprocessing(fileType = "list", inputType = "X", file = new_sms, dictionnaire = dictionnaire, max_length=max_length)
 
 # Prédictions
 predictions = modele.predict(new_base, verbose=0)
