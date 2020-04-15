@@ -2,7 +2,6 @@
 
 ## Introduction
 
-
 Les spams sont à notre époque, pour tous les utilisateurs de smartphone, potentiellement une nuisance ou dans le pire des cas
 une tentative d'escroquerie. Ce sont souvent des SMS invitant à contacter un numéro surtaxé ou à cliquer sur un lien frauduleux. C'est pourquoi, il semblerait judicieux de trouver une méthode permettant de prédire au
 vu de son contenu, si un SMS est un spam ou non.  
@@ -10,7 +9,6 @@ Il s'agira donc de l'objet de notre étude, arriver à prédire avec précision 
 
 
 ## Présentation des données
-
 
 Pour ce faire, nous avons utilisé un jeu de données contenant 5 574 SMS, dont la nature est renseignée. Le terme _"ham"_
 s'opposera ici au terme _"spam"_ et signifie _"message légitime"_. Voici un extrait de cette base, vous en présentant
@@ -109,7 +107,7 @@ employer cette fonction.
 Il vous sera ainsi facile de tester ce modèle sur des SMS que vous pourriez vous même retranscrire (comme illustré dans
 l'ultime exemple).
 
-## Pistes d'amélioration
+## Pistes d'évolution
 
 Dans le but d'améliorer les performances du modèle il serait possible de jouer sur les points suivants :
 >- La taille de l'échantillon sur lequel notre réseau de neurones peut s'entraîner (plus la taille d'échantillon est grande
@@ -119,3 +117,6 @@ et meilleures sont les performances)
 >- Gérer la taille de l'input : doit-on raccourcir les SMS recodés ? 
 >- Essayer de nouvelles structures de réseaux de neurones : le nombre de couches cachées, le nombre de neurones cachés sur
 chaque couche
+
+On pourrait aisément transposer ce genre de modèle dans le cadre de la détection de spam non pas seulement pour les SMS mais
+également les mails que nous recevons majoritairement...
