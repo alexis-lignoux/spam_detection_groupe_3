@@ -11,6 +11,7 @@ Il s'agira donc de l'objet de notre étude, arriver à prédire avec précision 
 
 ## Présentation des données
 
+
 Pour ce faire, nous avons utilisé un jeu de données contenant 5 574 SMS, dont la nature est renseignée. Le terme _"ham"_
 s'opposera ici au terme _"spam"_ et signifie _"message légitime"_. Voici un extrait de cette base, vous en présentant
 ainsi la structure :
@@ -107,3 +108,14 @@ employer cette fonction.
 
 Il vous sera ainsi facile de tester ce modèle sur des SMS que vous pourriez vous même retranscrire (comme illustré dans
 l'ultime exemple).
+
+## Pistes d'amélioration
+
+Dans le but d'améliorer les performances du modèle il serait possible de jouer sur les points suivants :
+>- La taille de l'échantillon sur lequel notre réseau de neurones peut s'entraîner (plus la taille d'échantillon est grande
+et meilleures sont les performances)
+>- Le dictionnaire de mots employé pour recoder les phrases lors du préprocessing
+>- Introduire ou écarter de nouveaux inputs
+>- Gérer la taille de l'input : doit-on raccourcir les SMS recodés ? 
+>- Essayer de nouvelles structures de réseaux de neurones : le nombre de couches cachées, le nombre de neurones cachés sur
+chaque couche
