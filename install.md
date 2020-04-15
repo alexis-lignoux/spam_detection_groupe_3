@@ -6,7 +6,7 @@
 >- pandas
 >- tensorflow
 
-#### L'installation de ces différents packages se fait grâce à instruction suivante :
+#### L'installation de ces différents packages se fait grâce à l'instruction suivante :
 >- pip install keras numpy pandas tensorflow
 
 _(Il vous faut simplement copier coller la ligne précédente dans votre console python)_
