@@ -1,22 +1,13 @@
 # Notice d'utilisation
 
-## Motivations
+## Introduction
 
-Les spams envoyés par SMS représentent aujourd’hui une source de danger pour les utilisateurs de téléphones puisque ce
-sont souvent des tentatives d’arnaques. Ces messages non désirés du quotidien proviennent de numéros inconnus. Souvent,
-ces textos invitent le client à contacter un numéro surtaxé ou à cliquer sur un lien frauduleux.  
-Le code réalisé a pour but de reconnaitre, le plus fiablement possible, la réception de ces spams afin de pouvoir les bloquer. 
 
-<p>
+Les spams sont à notre époque, pour tous les utilisateurs de smartphone, potentiellement une nuisance ou dans le pire des cas
+une tentative d'escroquerie. Ce sont souvent des SMS invitant à contacter un numéro surtaxé ou à cliquer sur un lien frauduleux. C'est pourquoi, il semblerait judicieux de trouver une méthode permettant de prédire au
+vu de son contenu, si un SMS est un spam ou non.  
+Il s'agira donc de l'objet de notre étude, arriver à prédire avec précision si un SMS est un spam ou non.
 
-_**intro alternative:**_
-
-_Les spams sont à notre époque pour tout utilisateur de smartphone potentiellement une nuisance ou dans le pire des cas
-une tentative d'escroquerie. De ce fait, il semblerait judicieux de trouver une méthode nous permettant de prédire au
-vu de son contenu, si un SMS est un spam ou non. Il s'agira donc de l'objet de notre étude, arriver à prédire si un SMS
-est un spam ou non._
-
-</p>
 
 ## Présentation des données
 
@@ -24,13 +15,12 @@ Pour ce faire, nous avons utilisé un jeu de données contenant 5 574 SMS, dont 
 s'opposera ici au terme _"spam"_ et signifie _"message légitime"_. Voici un extrait de cette base, vous en présentant
 ainsi la structure :
 
-<hr/>
 
 |ham/spam  |                        Contenu du SMS                                                                            |
 | -------- | :---------------------------------------------------------------------------------------------                   |
 | ham      | Go until jurong point, crazy.. Available only in bugis n great world la e buffet... Cine there got amore wat...  |
 | ham      | Ok lar... Joking wif u oni...                                                                                    | 
-| spam     | Free entry in 2 a wkly comp to win FA Cup final tkts 21st May 2005. Text FA to 87121 to receive entry question(std txt rate)T&C's apply 08452810075over18's                                                                                      |
+| spam     | Free entry in 2 a wkly comp to win FA Cup final tkts 21st May 2005. Text FA to 87121 to receive entry question(std txt rate)T&C's apply 08452810075over18's                                                                                          |
 | ham      | U dun say so early hor... U c already then say...                                                                |
 |ham       | Nah I don't think he goes to usf, he lives around here though                                                    |
 
@@ -39,7 +29,6 @@ Sur ces 5 574 messages SMS, 86.6% des messages sont légitimes et 13.4% sont des
 
 _Vous pouvez retrouver ce jeu de données en suivant ce [lien](http://archive.ics.uci.edu/ml/machine-learning-databases/00228/)_
 
-<hr/>
 
 ## Méthodologie :
 
@@ -47,35 +36,35 @@ L'approche utilisée par la suite sera l'usage d'un réseau de neurones dans un 
 grosse part du travail va donc consister à retraiter notre base initiale pour la rendre exploitable par notre réseau de
 neurones, qui ne peut prendre en argument que des inputs numériques.
 
-Dans une première partie nous allons construire un premier réseau de neurones à partir des SMS que nous auront
-transformé en substituant un mot par un nombre. Puis, dans une seconde partie nous tenterons d'améliorer les
-performances prédictives de notre réseau de neurones par une analyse plus approfondie des données et principalement par
+Dans une première partie, nous allons construire un premier réseau de neurones à partir des SMS que nous auront
+transformé en substituant un mot par un nombre. Puis, dans une seconde partie, nous tenterons d'améliorer les
+performances prédictives de notre réseau de neurones par une analyse plus approfondie des données, principalement par
 l'ajout de nouveaux prédicteurs.
 
 #### Premier réseau de neurones
 
-La première étape consiste à créer un dossier dans lequel nous stockerons tous les fichiers, et parmis-ceux ci, le
+La première étape consiste à créer un dossier dans lequel nous stockerons tous les fichiers, et parmi ceux-ci, le
 jeu de données initial. Il vous faudra si vous voulez réexécuter ce code, changer la modalité de la variable _directory_
 pour lui indiquer le chemin jusqu'à votre dossier.
 
 ##### 1 - Pré-processing
 >- Chargement les données depuis le fichier .txt
->- Divisions des données pour obtenir une liste contenant les indicateurs de ham/spam et une liste comprenant le
+>- Division des données pour obtenir une liste contenant les indicateurs ham/spam et une liste comprenant le
 contenu des messages.
->- Recodage des ham en 0 et spam en 1
->- Construction d'un dictionnaire recensant les mots de l'ensemble des messages, et attribution une valeur numérique
-non nulle différente pour chaque mot ayant été utilisé plus de 2 fois (valeur 0 pour tous les autres)
+>- Recodage des ham en 0 et spam en 1.
+>- Construction d'un dictionnaire recensant les mots de l'ensemble des messages, et attribution d'une valeur numérique
+non nulle différente pour chaque mot ayant été utilisé plus de 2 fois (valeur 0 pour tous les autres).
 >- Recodage des SMS en remplaçant tous les mots par leur valeur numérique. La longueur des SMS recodés est standardisée
 pour être de la longueur du SMS le plus long rencontré dans la base.
->- Transformation des objets de type liste en objet de type array
+>- Transformation des objets de type liste en objet de type array.
 
 ##### 2 - Division des données en échantillons d'apprentissage et test
->- 500 observations forment l'échantillons test et le reste l'échantillon d'apprentissage.
+>- 500 observations forment l'échantillon test et le reste l'échantillon d'apprentissage.
 
 ##### 3 - Entraînement du réseau de neurones
->- Création d'un réseau de neurones avec 3 couches, la couche d'entrée, la couche intermédiaire qui est de type LSTM
-(Long Short Term Memory) et enfin la couche de sortie avec une transformation logistique
->- On entraîne ce réseau de neurone sur l'échantillon d'apprentissage
+>- Création d'un réseau de neurones avec 3 couches: la couche d'entrée, la couche intermédiaire qui est de type LSTM
+(Long Short Term Memory) et enfin la couche de sortie avec une transformation logistique.
+>- On entraîne ce réseau de neurone sur l'échantillon d'apprentissage.
 
 ##### 4 - Évaluation des capacités prédictives du modèle
 >- Prédiction du modèle sur l'échantillon test
@@ -89,12 +78,12 @@ de neurones, le choix de certains hyper-paramètres.
 ##### 1 - La recherche de nouveaux inputs
 >- Analyse de la distribution en terme de longueur de SMS (nombre de mots), de nombre de chiffres, de nombre de
 ponctuation ("?", "!",...), et enfin de nombre de devises ("€", "$", ...).
->- Incorporation de 4 inputs supplémentaire
->- Augmentation des performances du réseau de neurones : 98,60% (échantillon test)
+>- Incorporation de 4 inputs supplémentaire.
+>- Augmentation des performances du réseau de neurones : 98,60% (échantillon test).
 
 ##### 2 - Choix optimal d'hyperparamètres
->- Choix du nombre de fois où le modèle est estimé (nombre d'epoch pour maximiser les performances prédictives.
->- Augmentation des performances du réseau de neurones : 98.80% (échantillon test)
+>- Choix du nombre de fois où le modèle est estimé (nombre d'epoch pour maximiser les performances prédictives).
+>- Augmentation des performances du réseau de neurones : 98.80% (échantillon test).
 
 ##### 3 - Incorporation d'une nouvelle couche
 >- Analyse des performances du modèle avec ajout d'une nouvelle couche de 100 neurones cachés, avec différentes
